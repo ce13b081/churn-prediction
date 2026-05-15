@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip show:*)",
+      "Bash(python:*)",
+      "Bash(grep -E '\\\\.\\(txt|py|yml|yaml|toml\\)$')",
+      "Bash(streamlit run:*)"
+    ]
+  }
+}
