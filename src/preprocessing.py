@@ -11,7 +11,12 @@ def get_feature_columns() -> dict:
     Returns a dict with keys: 'numerical', 'categorical', 'target'.
     """
     return {
-        "numerical": ["SeniorCitizen", "tenure", "MonthlyCharges", "TotalCharges"],
+        "numerical": [
+            "SeniorCitizen", "tenure", "MonthlyCharges", "TotalCharges",
+            # Engineered numerical features
+            "tenure_x_monthly", "avg_monthly_spend",
+            "high_value_customer", "long_tenure",
+        ],
         "categorical": [
             "gender",
             "Partner",
@@ -28,6 +33,8 @@ def get_feature_columns() -> dict:
             "Contract",
             "PaperlessBilling",
             "PaymentMethod",
+            # Engineered categorical feature
+            "contract_x_internet",
         ],
         "target": "Churn",
     }

@@ -14,3 +14,6 @@ pytest>=7.4.0
 httpx>=0.24.0
 requests>=2.31.0
 scipy>=1.11.0
+pytest-asyncio>=0.21.0
+optuna>=3.0.0
+imbalanced-learn>=0.11.0

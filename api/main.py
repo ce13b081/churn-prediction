@@ -77,7 +77,8 @@ async def predict(features: CustomerFeatures):
 
     try:
         input_dict = features.model_dump()
-        result = predict_single(app.state.model, input_dict)
+        optimal_threshold = app.state.metadata.get("optimal_threshold", None)
+        result = predict_single(app.state.model, input_dict, threshold=optimal_threshold)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 

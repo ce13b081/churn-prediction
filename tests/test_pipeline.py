@@ -29,14 +29,26 @@ def raw_df():
 
 @pytest.fixture
 def synthetic_df():
-    """Minimal in-memory DataFrame for pipeline tests (no network required)."""
+    """Minimal in-memory DataFrame for pipeline tests (no network required).
+
+    Provides valid types for all columns including engineered features so the
+    preprocessor can fit without errors.
+    """
     cols = get_feature_columns()
     n = 20
     data = {}
+
+    # Numerical features (including engineered) — random floats are fine
     for col in cols["numerical"]:
         data[col] = np.random.rand(n).tolist()
+
+    # Categorical features — use valid strings; engineered categorical needs
+    # a realistic string so OHE doesn't choke during fit.
     for col in cols["categorical"]:
-        data[col] = ["Yes"] * n  # arbitrary but valid
+        if col == "contract_x_internet":
+            data[col] = ["Month-to-month_Fiber optic"] * n
+        else:
+            data[col] = ["Yes"] * n
 
     data["Churn"] = (["Yes"] * 10) + (["No"] * 10)
     return pd.DataFrame(data)

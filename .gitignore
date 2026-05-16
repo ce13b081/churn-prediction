@@ -28,3 +28,6 @@ env/
 
 # Streamlit
 .streamlit/
+
+# Reports (generated outputs)
+reports/
